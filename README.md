@@ -8,7 +8,7 @@ Scripts are written in Python 3.12 and utilize the following libraries:
 
 - pandas 2.1.3
 - numpy 1.26.2
-- polars 0.20.1
+- polars 0.20.1 ([Polars cheat sheet](https://franzdiebold.github.io/polars-cheat-sheet/Polars_cheat_sheet.pdf))
 - dask 2023.11.0
 - matplotlib 3.8.2
 - seaborn 0.13.0
