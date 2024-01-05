@@ -30,7 +30,7 @@ Raw data was downloaded in CSV format from the PIERS BOL page, selecting all fie
     - note: the resulting python dataframe is >100 GB and may not be loadable with pandas; [see below regarding the polars library](#using-the-polars-library). 
 - data/piers_exports_complete.parquet (7 GB)
     - parquet file containing a single table of all export data
-    - note: the resulting python dataframe is ~ 
+    - note: the resulting python dataframe is ~35 GB
 
 ### Pipeline files
 
