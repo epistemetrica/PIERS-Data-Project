@@ -17,6 +17,10 @@ Scripts are written in Python 3.12 and utilize the following libraries:
 
 Raw data was downloaded in CSV format from the PIERS BOL page, selecting all fields and downloading six months at a time, and saving in the data/raw folder. 
 
+### Transforms
+
+Data transformations are limited here to casting dtypes for efficient storage, dropping duplicates, and giving columns pythonic names. Note: columns containing lists are left as string dtypes, as neighther Pandas nor Polars/Dask seem to have efficient means of handling list columns other than lists of ints.  
+
 ### Data Files
 
 - data/column_definitions.csv
@@ -30,7 +34,7 @@ Raw data was downloaded in CSV format from the PIERS BOL page, selecting all fie
     - note: the resulting python dataframe is >100 GB and may not be loadable with pandas; [see below regarding the polars library](#using-the-polars-library). 
 - data/piers_exports_complete.parquet (7 GB)
     - parquet file containing a single table of all export data
-    - note: the resulting python dataframe is ~35 GB
+    - note: the resulting python dataframe is 13.6 GB
 
 ### Pipeline files
 
@@ -54,5 +58,5 @@ Polars provides a powerful toolkit for handling large datasets (including larger
 
 *The key concept is to utilize Polars's automatic query optimization and parallelization engines by [chaining expressions](https://docs.pola.rs/user-guide/concepts/expressions/) and calling .collect() at the lastest possible point in your code.* 
 
-Note: When working with larger-than-memory datasets, you may need to call [.collect(streaming=True)](https://docs.pola.rs/user-guide/concepts/streaming/). 
+Note: When working with larger-than-memory datasets, you may need to call [.collect(streaming=True)](https://docs.pola.rs/user-guide/concepts/streaming/). However, this feature is in alpha and can have unexpected results (e.g., calling pl.scan_parquet('data/piers_exports_complete.parquet').collect(streaming=True) takes > 10 minutes, while simply calling .collect() on the same expression takes ~23s.)
 
