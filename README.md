@@ -19,7 +19,7 @@ Raw data was downloaded in CSV format from the PIERS BOL page, selecting all fie
 
 ### Transforms
 
-Data transformations are limited here to casting dtypes for efficient storage, dropping duplicates, and giving columns pythonic names. Note: columns containing lists are left as string dtypes, as neighther Pandas nor Polars/Dask seem to have efficient means of handling list columns other than lists of ints.  
+Data transformations are limited here to casting dtypes for efficient storage, dropping duplicates, and giving columns pythonic names. Note: columns containing lists are left as string dtypes, as neighther Pandas nor Polars/Dask seem to have efficient means of inspecting duplicates in list columns other than lists of ints. Since each carrier issues their own unique Bill of Lading identifiers, a 'bol_id' column is created combining the carrier SCAC codes with the issued BoL number. As can been seen in the exploratory analysis section, there are still many duplicated bol_ids in the database. 
 
 ### Data Files
 
